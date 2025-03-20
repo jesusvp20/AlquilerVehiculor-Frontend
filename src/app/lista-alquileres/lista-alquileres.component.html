@@ -1,0 +1,71 @@
+
+<div class="timeline-container">
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-button (click)="go_to_home('home')">
+        <mat-icon>arrow_back</mat-icon>
+        Regresar
+      </button>
+      <span class="spacer"></span>
+    </mat-toolbar>
+  
+    <h1>Historial de Alquileres</h1>
+    
+    <div class="controls">
+      <mat-form-field class="search-field">
+        <input matInput 
+              (keyup)="applyFilter($event)" 
+              placeholder="Buscar alquileres..."
+              #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+  
+      <mat-button-toggle-group (change)="onSortChange($event)" class="sort-buttons">
+        <mat-button-toggle value="fecha">
+          <mat-icon>date_range</mat-icon>
+          Ordenar por fecha
+        </mat-button-toggle>
+        <mat-button-toggle value="precio">
+          <mat-icon>attach_money</mat-icon>
+          Ordenar por precio
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  
+    <div class="timeline">
+      <div *ngFor="let alquiler of sortedAlquileres" class="timeline-item">
+        <div class="timeline-marker" [ngClass]="getStatusClass(alquiler)">
+          <mat-icon>{{ getStatusIcon(alquiler) }}</mat-icon>
+        </div>
+        
+        <mat-card class="timeline-card">
+          <div class="card-header">
+            <div class="vehicle-info">
+              <mat-icon>directions_car</mat-icon>
+              <div>
+                <h3>{{ alquiler.placa_vehiculo }}</h3>
+                <span class="client">Cliente #{{ alquiler.id_cliente | number:'3.0-0' }}</span>
+              </div>
+            </div>
+            <span class="price">{{ alquiler.precio_alquiler | currency:'COP':'symbol':'1.0-0' }}</span>
+          </div>
+  
+          <div class="date-range">
+            <div class="date">
+              <mat-icon>calendar_today</mat-icon>
+              {{ alquiler.fecha_alquiler | date:'mediumDate' }}
+            </div>
+            <mat-icon>arrow_right_alt</mat-icon>
+            <div class="date">
+              <mat-icon>event_available</mat-icon>
+              {{ alquiler.fecha_devolucion | date:'mediumDate' }}
+            </div>
+          </div>
+  
+          <div class="details">
+            {{ alquiler.detalles_alquiler }}
+          </div>
+
+        </mat-card>
+      </div>
+    </div>
+  </div>

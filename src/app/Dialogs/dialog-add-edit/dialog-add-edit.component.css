@@ -1,0 +1,32 @@
+.dialog-title {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .dialog-content {
+    padding: 16px;
+  }
+  
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .date-fields {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .dialog-actions {
+    padding: 8px 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  

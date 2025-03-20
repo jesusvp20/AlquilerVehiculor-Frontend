@@ -1,0 +1,90 @@
+<div style="width: 90%; margin: 20px auto;"> 
+    <mat-toolbar color="primary" class="toolbar">
+        <button mat-button (click)="go_to_home('home')">
+          <mat-icon>home</mat-icon>
+          Inicio
+        </button>
+        <span class="spacer"></span>
+    </mat-toolbar>
+   
+    <h1 style="text-align: center; margin: 20px 0;">Lista De Vehículos</h1>
+    <button mat-raised-button color="primary" (click)="DialogoCreateVehiculosComponent()">
+        <mat-icon>add</mat-icon>
+        Nuevo Cliente
+      </button>
+      <br>
+      <br>
+      <mat-form-field style="margin-left: auto; width: 100%;">
+        <input matInput 
+               (keyup)="applyFilter($event)" 
+               placeholder="Buscar..."
+               #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table"> 
+      
+        <!-- Columnas reorganizadas -->
+        <ng-container matColumnDef="numero_vehiculo">
+          <th mat-header-cell *matHeaderCellDef> No. Vehículo </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.numero_vehiculo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imagen_vehiculo">
+            <th mat-header-cell *matHeaderCellDef> Imagen </th>
+            <td mat-cell *matCellDef="let element">
+              <img [src]="element.imagen_vehiculo" alt="Vehículo" class="vehicle-image">
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modelo_vehiculo">
+            <th mat-header-cell *matHeaderCellDef> Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{element.modelo_vehiculo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef> Placa </th>
+          <td mat-cell *matCellDef="let element"> {{element.placa}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{ getTipoName(element.id_tipo) }} </td>
+          </ng-container>
+    
+        <ng-container matColumnDef="precio_alquiler">
+            <th mat-header-cell *matHeaderCellDef> Precio de alquiler </th>
+            <td mat-cell *matCellDef="let element" class="text-left"> 
+              {{element.precio_alquiler | number:'1.0-0'}} COP
+            </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element">
+              <span [class]="element.estado === 'Disponible' ? 'badge-available' : 'badge-occupied'">
+                {{element.estado}}
+              </span>
+            </td>
+        </ng-container>
+    <ng-container matColumnDef="acciones">
+
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button mat-icon-button color="primary" (click)="editar(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn"(click)="eliminar(element)" >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of vehicles">
+    </mat-paginator>
+</div> 

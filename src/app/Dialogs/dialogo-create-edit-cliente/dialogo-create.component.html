@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{titulo}} Cliente</h1>
+
+<form [formGroup]="formCliente">
+  <mat-dialog-content class="client-form">
+    <div class="form-section">
+      
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nombre del cliente</mat-label>
+        <input matInput formControlName="nombre_cliente" placeholder="Ej. Juan Pérez">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Documento del cliente</mat-label>
+        <input matInput formControlName="numero_documento" type="number" placeholder="Documento">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" type="tel" placeholder="Teléfono">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email del cliente</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="ejemplo@correo.com">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Fecha de registro</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="fecha_registro" placeholder="Selecciona fecha">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close color="warn">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" (click)="RegistrarCliente()">{{accion}}</button>
+  </mat-dialog-actions>
+</form>

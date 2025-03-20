@@ -1,0 +1,18 @@
+<h1 mat-dialog-title class="dialog-title">
+    Eliminar Vehiculos
+  </h1>
+  
+  <mat-dialog-content class="dialog-content">
+    <div class="form-fields">
+      ¿Desea eliminar este Vehiculo? "{{ dataVehiculo.modelo_vehiculo }}"?
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-raised-button color="warn" mat-dialog-close>
+      Volver
+    </button>
+    <button mat-raised-button color="primary" (click)="Delete()" sdkFocusInitial>
+      Sí eliminar
+    </button>
+  </mat-dialog-actions>

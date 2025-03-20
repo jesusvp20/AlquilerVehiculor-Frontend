@@ -1,0 +1,55 @@
+/* Agregar en el CSS */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  padding: 12px;
+  text-align: left;
+}
+
+.custom-table td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.vehicle-image {
+  width: 100px;
+  
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.badge-available {
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+
+.badge-occupied {
+  background-color: #f44336;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+@media (max-width: 768px) {
+  .centered-container {
+      width: 95%;
+      padding: 0.5rem;
+  }
+}

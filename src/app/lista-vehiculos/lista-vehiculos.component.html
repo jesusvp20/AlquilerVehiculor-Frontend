@@ -1,0 +1,65 @@
+<div class="vehiculos-container">
+    <!-- Barra superior con botón para regresar -->
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-button (click)="goToHome()">
+        <mat-icon>arrow_back</mat-icon>
+        Regresar
+      </button>
+      <span class="spacer"></span>
+    </mat-toolbar>
+  
+    <div class="header">
+      <h1>Flota de Vehículos</h1>
+      <button mat-raised-button color="accent" (click)="openRentalDialog()">
+        <mat-icon>directions_car</mat-icon>
+        Alquilar Nuevo Vehículo
+      </button>
+    </div>
+  
+    <div class="controls">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Buscar vehículo</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar...">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="sort-field">
+        <mat-label>Ordenar por</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)" [value]="currentSort">
+          <mat-option value="precio">Precio</mat-option>
+          <mat-option value="estado">Estado</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="cards-container">
+      <mat-card class="vehicle-card" *ngFor="let vehiculo of filteredVehiculos">
+        <img mat-card-image 
+             [src]="vehiculo.imagen_vehiculo || 'assets/default-car.png'" 
+             alt="{{ vehiculo.modelo_vehiculo }}"
+             (error)="handleImageError($event)">
+        <mat-card-content>
+          <h2>{{ vehiculo.modelo_vehiculo }}</h2>
+          <p><strong>Placa:</strong> {{ vehiculo.placa }}</p>
+          <p><strong>Tipo:</strong> {{ getTipoName(vehiculo.id_tipo) }}</p>
+          <p>
+            <strong>Precio:</strong>
+            {{ vehiculo.precio_alquiler | currency:'COP':'symbol':'1.0-0' }} /día
+          </p>
+          <p>
+            <strong>Estado:</strong>
+            <span [ngClass]="{'badge-available': vehiculo.estado === 'Disponible', 'badge-occupied': vehiculo.estado !== 'Disponible'}">
+              {{ vehiculo.estado }}
+            </span>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="openRentalDialog()">
+            <mat-icon>directions_car</mat-icon>
+            Alquilar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

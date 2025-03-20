@@ -1,0 +1,53 @@
+<div class="timeline-container">
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-button (click)="go_to_home('home')">
+      <mat-icon>arrow_back</mat-icon>
+      Regresar
+    </button>
+    <span class="spacer"></span>
+  </mat-toolbar> 
+  
+  <h2>Historial de Registro de Clientes</h2>
+    
+    <mat-form-field class="search-field">
+      <input matInput 
+             (keyup)="applyFilter($event)" 
+             placeholder="Buscar clientes..."
+             #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  
+    <div class="timeline">
+      <div *ngFor="let cliente of sortedClientes" class="timeline-item">
+        <div class="timeline-marker">
+          <mat-icon>person_add</mat-icon>
+        </div>
+        <div class="timeline-content mat-elevation-z2">
+          <div class="timeline-header">
+            <span class="client-id">#{{cliente.id | number:'3.0-0'}}</span>
+            <h3 class="client-name">{{cliente.nombre_cliente}}</h3>
+            <span class="registration-date">
+              {{cliente.fecha_registro | date:'dd MMM yyyy - HH:mm'}}
+            </span>
+          </div>
+          
+          <div class="client-details">
+            <div class="detail-item">
+              <mat-icon class="detail-icon">fingerprint</mat-icon>
+              <span>{{cliente.numero_documento}}</span>
+            </div>
+            
+            <div class="detail-item">
+              <mat-icon class="detail-icon">phone</mat-icon>
+              <span>{{cliente.telefono}}</span>
+            </div>
+            
+            <div class="detail-item" *ngIf="cliente.email">
+              <mat-icon class="detail-icon">email</mat-icon>
+              <span>{{cliente.email}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,94 @@
+<div style="width: 70%; margin: 20px auto;">
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-button (click)="go_to_home('home')">
+        <mat-icon>home</mat-icon>
+        Inicio
+      </button>
+      <span class="spacer"></span>
+    </mat-toolbar>
+  
+    <h1 style="text-align: center; margin-bottom: 15px;">Lista De Clientes</h1>
+    
+    <button mat-raised-button color="primary" (click)="dialogoNuevoCliente()">
+      <mat-icon>add</mat-icon>
+      Nuevo Cliente
+    </button>
+    <br>
+    <br>
+    <mat-form-field style="margin-left: auto; width: 100%;">
+      <input matInput 
+             (keyup)="applyFilter($event)" 
+             placeholder="Buscar..."
+             #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    
+    <div style="width: 100%; margin: 0 auto;" class="table-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="enhanced-table">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> N° Cliente </th>
+          <td mat-cell *matCellDef="let element"> #{{element.id | number:'3.0-0'}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="nombre_cliente">
+          <th mat-header-cell *matHeaderCellDef> Nombre del Cliente </th>
+          <td mat-cell *matCellDef="let element"> 
+            <mat-icon class="mr-2">person</mat-icon>
+            {{element.nombre_cliente}} 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="numero_documento">
+          <th mat-header-cell *matHeaderCellDef> Documento </th>
+          <td mat-cell *matCellDef="let element"> 
+            <mat-icon class="mr-2">badge</mat-icon>
+            {{element.numero_documento}} 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+          <td mat-cell *matCellDef="let element"> 
+            <mat-icon class="mr-2">phone</mat-icon>
+            {{element.telefono}}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> 
+            <mat-icon class="mr-2">email</mat-icon>
+            {{element.email || 'N/A'}}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="fecha_registro">
+          <th mat-header-cell *matHeaderCellDef> Fecha Registro </th>
+          <td mat-cell *matCellDef="let element"> 
+            {{element.fecha_registro | date:'mediumDate'}}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="editar(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminarCliente(element)" >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page"
+                     class="custom-paginator">
+      </mat-paginator>
+    </div>
+  </div>

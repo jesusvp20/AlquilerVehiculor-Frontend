@@ -1,0 +1,144 @@
+.timeline-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #3f51b5;
+    margin: 2rem 0;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .search-field {
+    flex-grow: 1;
+  }
+  
+  .sort-buttons {
+    margin-left: auto;
+  }
+  
+  .timeline {
+    position: relative;
+    padding-left: 60px;
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .timeline-marker {
+    position: absolute;
+    left: -75px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 2;
+  }
+  
+  .timeline-marker.active {
+    background: #4CAF50;
+  }
+  
+  .timeline-marker.completed {
+    background: #3f51b5;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: -45px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #ddd;
+    z-index: 1;
+  }
+  
+  .timeline-card {
+    position: relative;
+    transition: transform 0.3s ease;
+    padding: 1.5rem;
+  }
+  
+  .timeline-card:hover {
+    transform: translateX(10px);
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .vehicle-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .vehicle-info h3 {
+    margin: 0;
+  }
+  
+  .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+  
+  .date-range {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .details {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .status-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+  
+  .status-badge.active {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  .status-badge.completed {
+    background: #3f51b5;
+    color: white;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }

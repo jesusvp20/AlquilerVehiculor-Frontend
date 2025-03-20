@@ -1,0 +1,39 @@
+.vehicle-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Reducimos el espacio entre filas */
+    padding-bottom: 0;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem; /* Reducimos el espacio entre columnas */
+  }
+  
+  .form-field {
+    flex: 1 1 48%; /* Todos los inputs tendrán el mismo tamaño */
+    min-width: 200px;
+  }
+  
+  .file-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  

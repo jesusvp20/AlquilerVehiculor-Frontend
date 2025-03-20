@@ -1,0 +1,104 @@
+
+<div style="width: 70%; margin: 20px auto;">
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-button (click)="go_to_home('home')">
+      <mat-icon>home</mat-icon>
+      Inicio
+    </button>
+    <span class="spacer"></span>
+  </mat-toolbar>
+
+    <h1 style="text-align: center; margin-bottom: 15px;">Lista de Alquileres</h1>
+    
+    <div style="text-align: left; margin-bottom: 10px;">
+      <button mat-raised-button color="primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        Nuevo Alquiler
+      </button>
+    </div>
+    <mat-form-field style="margin-left: auto; width: 100%;">
+      <input matInput 
+             (keyup)="applyFilter($event)" 
+             placeholder="Buscar..."
+             #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div style="width: 100%; margin: 0 auto;" class="table-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="enhanced-table">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="detalles_alquiler">
+            <th mat-header-cell *matHeaderCellDef> Detalles </th>
+            <td mat-cell *matCellDef="let element"> 
+              <mat-icon class="mr-2">directions_car</mat-icon>
+              {{element.detalles_alquiler}} 
+            </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="precio_alquiler">
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let element"> 
+              {{element.precio_alquiler | currency:'COP':'symbol':'1.0-0'}}
+            </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="fecha_alquiler">
+            <th mat-header-cell *matHeaderCellDef> Fecha Alquiler </th>
+            <td mat-cell *matCellDef="let element"> 
+              {{element.fecha_alquiler | date:'mediumDate'}}
+            </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="fecha_devolucion">
+            <th mat-header-cell *matHeaderCellDef> Fecha Devolución </th>
+            <td mat-cell *matCellDef="let element"> 
+              {{element.fecha_devolucion | date:'mediumDate'}}
+            </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="placa_vehiculo">
+          <th mat-header-cell *matHeaderCellDef> Placa  </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="placa-badge">
+              {{ element.placa_vehiculo }} 
+            </div>
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="id_cliente">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Número del Cliente </th>
+          <td mat-cell *matCellDef="let element" class="text-center">
+            #{{ element.id_cliente | number:'3.0-0' }} 
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="editar(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn"(click)="eliminarAlquilar(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+            class="row-element"
+            [class.selected]="selectedRow === row"
+            (click)="selectedRow = row">
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page"
+                     class="custom-paginator">
+      </mat-paginator>
+    </div>
+  </div>

@@ -1,0 +1,63 @@
+<h1 mat-dialog-title class="dialog-title">{{ titulo }}</h1>
+<form [formGroup]="formAlquiler">
+  <mat-dialog-content class="dialog-content">
+    <div class="form-fields">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Detalle del alquiler</mat-label>
+        <input matInput formControlName="detalles_alquiler" autocomplete="off">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Precio Del Alquiler</mat-label>
+        <input matInput type="number" formControlName="precio_alquiler">
+        <mat-hint align="end">
+          {{ formAlquiler.get('precio_alquiler')?.value | currency: 'COP':'symbol':'1.0-0' }}
+        </mat-hint>
+      </mat-form-field>
+
+      <div class="date-fields">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Fecha de Alquiler</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="fecha_alquiler">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Fecha de Devolución</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="fecha_devolucion">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error *ngIf="formAlquiler.hasError('dateInvalid') && formAlquiler.get('fecha_devolucion')?.touched">
+            La fecha de devolución no puede ser menor que la fecha de alquiler.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Placa del Vehículo</mat-label>
+        <mat-select formControlName="placa_vehiculo">
+          <mat-option *ngFor="let vehiculo of vehiculosLista" [value]="vehiculo.placa">
+            {{ vehiculo.placa }} 
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Número del Cliente</mat-label>
+        <mat-select formControlName="id_cliente">
+          <mat-option *ngFor="let cliente of clientesLista" [value]="cliente.id">
+            {{ cliente.id }}  
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+</form>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-raised-button color="warn" mat-dialog-close>Volver</button>
+  <button mat-raised-button color="primary" (click)="addAlquiler()" [disabled]="formAlquiler.invalid">
+    {{ accion }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,48 @@
+
+.client-form {
+ 
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.vehiculo-form {
+  padding: 1rem 0;
+}
+
+.form-section {
+ 
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.form-field {
+  width: 100%;
+  margin: auto;
+  max-width: 100%;
+}
+
+.file-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.file-label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Ajusta la separación de los botones del diálogo */
+mat-dialog-actions {
+  margin-top: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
+  justify-content: flex-end;
+}
+
+mat-dialog-actions button {
+  margin-left: 1rem;
+  padding: 8px 20px;
+}
